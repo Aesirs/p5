@@ -1,14 +1,12 @@
-function preload() {
+function app(sketch: p5) {
+    sketch.setup = () => {
+        sketch.createCanvas(200, 200);
+    };
 
+    sketch.draw = () => {
+        sketch.background(0);
+        sketch.fill(255);
+    };
 }
 
-function setup() {
-    const canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent('sketch');
-    stroke(255);
-}
-
-function draw() {
-    background(0);
-}
-
+const myp5 = new p5(app);
