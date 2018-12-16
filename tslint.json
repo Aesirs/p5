@@ -2,7 +2,9 @@
     "extends": "tslint:latest",
     "rules": {
         "no-unnecessary-type-assertion": true,
+        "no-namespace": false,
         "autoFixOnSave": true,
+        "arrow-parens": false,
         "array-type": [true, "array"],
         "boolean-trivia": true,
         "class-name": true,

@@ -1,66 +1,54 @@
 
-let ax: number;
-let ay: number;
-let bx: number;
-let by: number;
-let cx: number;
-let cy: number;
+let points: p5.Vector[];
+let current: p5.Vector;
 
-let x: number;
-let y: number;
+let percent = 0.55;
+let n = 5;
+let previous: p5.Vector;
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
-
-    ax = random(width);
-    ay = random(height);
-    bx = random(width);
-    by = random(height);
-    cx = random(width);
-    cy = random(height);
-
-    x = random(width);
-    y = random(height);
-
-    background(0);
-    stroke(255);
-    strokeWeight(2);
-    point(ax, ay);
-    point(bx, by);
-    point(cx, cy);
+    createCanvas(windowWidth, windowHeight);
+    reset();
 }
 
 function windowResized() {
-    resizeCanvas(window.innerWidth, window.innerHeight);
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-    for (let index = 0; index < 100; index++) {
-        point(x, y);
+    if (frameCount % 200 === 0) reset();
 
-        const r = floor(random(3));
-        switch (r) {
-            case 0:
-                stroke(255, 0, 255);
+    for (let index = 0; index < 1000; index++) {
+        strokeWeight(1);
+        stroke(255, 0, 255, 100);
 
-                x = lerp(x, ax, 0.5);
-                y = lerp(y, ay, 0.5);
-                break;
-
-            case 1:
-                stroke(0, 255, 255);
-
-                x = lerp(x, bx, 0.5);
-                y = lerp(y, by, 0.5);
-                break;
-
-            case 2:
-                stroke(255, 255, 0);
-
-                x = lerp(x, cx, 0.5);
-                y = lerp(y, cy, 0.5);
-                break;
+        const next = points[floor(random(points.length))];
+        if (next !== previous) {
+            current.x = lerp(current.x, next.x, percent);
+            current.y = lerp(current.y, next.y, percent);
+            previous = next;
         }
+
+        point(current.x, current.y);
+    }
+}
+
+function reset() {
+    points = [];
+    for (let index = 0; index < n; index++) {
+        const vec = p5.Vector.fromAngle(index * TWO_PI / n);
+        vec.mult(height / 2);
+        vec.add(width / 2, height / 2);
+        points.push(vec);
     }
 
+    current = createVector(random(width), random(height));
+
+    background(0);
+    stroke(255);
+    strokeWeight(8);
+
+    points.forEach(vector => {
+        point(vector.x, vector.y);
+    });
 }
