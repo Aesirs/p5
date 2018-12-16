@@ -494,6 +494,11 @@ declare function createCanvas(w: number, h: number, renderer?: string): any;
 declare function resizeCanvas(): void;
 
 /**
+ * Resizes the canvas to given width and height.
+ */
+declare function resizeCanvas(w: number, h: number): void;
+
+/**
  * Removes the default canvas for a p5 sketch that doesn't
  * require a canvas
  */
@@ -1234,6 +1239,11 @@ declare function randomSeed(seed: number): void;
  * Return a random number.
  */
 declare function random(min: number, max: number): number;
+
+/**
+ * Return a random number.
+ */
+declare function random(max: number): number;
 
 /**
  * Returns a random number fitting a Gaussian, or

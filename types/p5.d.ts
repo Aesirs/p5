@@ -494,7 +494,7 @@ declare class p5 {
     /**
      * Resizes the canvas to given width and height.
      */
-    resizeCanvas():void
+    resizeCanvas(w:number, h:number):void
 
     /**
      * Removes the default canvas for a p5 sketch that doesn't
@@ -1237,6 +1237,11 @@ declare class p5 {
      * Return a random number.
      */
     random(min:number, max:number):number
+
+    /**
+     * Return a random number.
+     */
+    random(max:number):number
 
     /**
      * Returns a random number fitting a Gaussian, or

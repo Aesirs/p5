@@ -22,6 +22,7 @@
             "check-catch",
             "check-else"
         ],
+        "no-reference": false,
         "no-bom": true,
         "no-double-space": true,
         "no-in-operator": true,
